@@ -205,7 +205,7 @@ if python_version[0] == 3 and python_version[1] < 13:
     is_tensorflow_supported = True
     PIP_INSTALL_LIST.append("tflite-runtime")
     APT_INSTALL_LIST.append("libatlas-base-dev")
-    APT_INSTALL_LIST.append("libhdf5-130")
+    APT_INSTALL_LIST.append("libhdf5-dev")
 else:
     is_tensorflow_supported = False
     warn("tflite-runtime is only supported on python 3.12 or older.")
