@@ -244,12 +244,12 @@ def install():
         # ===================================
         print("apt install dependency:")
         do(msg="dpkg configure",
-            cmd='dpkg --configure -a')  
+            cmd='DEBIAN_FRONTEND=noninteractive dpkg --configure -a')  
         do(msg="update apt-get",
-            cmd='apt-get update -y')
+            cmd='DEBIAN_FRONTEND=noninteractive apt-get update -y')
         for dep in APT_INSTALL_LIST:
             do(msg=f"install {dep}",
-                cmd=f'apt-get install {dep} -y')
+                cmd=f'DEBIAN_FRONTEND=noninteractive apt-get install {dep} -y')
 
         # install dependencies with pip
         # ===================================
@@ -258,7 +258,7 @@ def install():
         if _is_bsps != '': # if true
             print("\033[38;5;8m pip3 install with --break-system-packages\033[0m")
         # update pip
-        do(msg="update pip3", cmd="apt-get upgrade -y python3-pip")
+        do(msg="update pip3", cmd="DEBIAN_FRONTEND=noninteractive apt-get install --only-upgrade -y python3-pip")
         for dep in PIP_INSTALL_LIST:
             if dep.endswith('.whl'):
                 dep_name = dep.split("/")[-1]
